@@ -5,60 +5,85 @@
 #                                                     +:+ +:+         +:+      #
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/08/09 18:00:27 by cjulienn          #+#    #+#              #
-#    Updated: 2022/04/01 19:39:41 by cjulienn         ###   ########.fr        #
+#    Created: 2021/04/13 12:18:50 by cjulienn          #+#    #+#              #
+#    Updated: 2021/05/20 15:45:41 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+SRCS = ./ft_atoi.c \
+	  ./ft_bzero.c \
+	  ./ft_calloc.c \
+	  ./ft_isalnum.c \
+	  ./ft_isalpha.c \
+	  ./ft_isascii.c \
+	  ./ft_isdigit.c \
+	  ./ft_isprint.c \
+	  ./ft_itoa.c \
+	  ./ft_memccpy.c \
+	  ./ft_memchr.c \
+	  ./ft_memcmp.c \
+	  ./ft_memcpy.c \
+	  ./ft_memmove.c \
+	  ./ft_memset.c \
+	  ./ft_putchar_fd.c \
+	  ./ft_putendl_fd.c \
+	  ./ft_putnbr_fd.c \
+	  ./ft_putstr_fd.c \
+	  ./ft_split.c \
+	  ./ft_strchr.c \
+	  ./ft_strdup.c \
+	  ./ft_strjoin.c \
+	  ./ft_strlcat.c \
+	  ./ft_strlcpy.c \
+	  ./ft_strlen.c \
+	  ./ft_strmapi.c \
+	  ./ft_strncmp.c \
+	  ./ft_strnstr.c \
+	  ./ft_strtrim.c \
+	  ./ft_strrchr.c \
+	  ./ft_substr.c \
+	  ./ft_tolower.c \
+	  ./ft_toupper.c
+	  
+BONUS =	$(SRCS) \
+		./ft_lstadd_back.c \
+		./ft_lstadd_front.c \
+		./ft_lstnew.c \
+		./ft_lstsize.c \
+		./ft_lstlast.c \
+		./ft_lstdelone.c \
+		./ft_lstclear.c \
+		./ft_lstiter.c \
+		./ft_lstmap.c
 
-NAME_VANILLA = libftvanilla.a
-VANILLA_PATH = ./libft/
-
-NAME_GNL = libftgnl.a
-GNL_PATH =  ./libft/get_next_line/
-
-NAME_FT_PRINTF = libftprintf.a
-FT_PRINTF_PATH = ./libft/ft_printf/
-
-NAME_ADDED_FUNC = libftadded.a
-ADDED_FUNC_PATH = ./libft/functions_added/
-
-INCLUDES_PATH = ./includes/
+OBJS = $(SRCS:.c=.o)
+BONUS_OBJS = $(BONUS:.c=.o)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror I$(INCLUDES_PATH)
+CFLAGS = -Wall -Wextra -Werror -I.
 
 RM = rm -f
 
-$(NAME):
-	$(MAKE) -C $(GNL_PATH)
-	$(MAKE) -C $(FT_PRINTF_PATH)
-	$(MAKE) -C $(ADDED_FUNC_PATH)
-	$(MAKE) -C $(VANILLA_PATH) bonus
-	ar -rc $(NAME) $(VANILLA_PATH)$(NAME_VANILLA) $(GNL_PATH)$(NAME_GNL) \
-	$(FT_PRINTF_PATH)$(NAME_FT_PRINTF) $(ADDED_FUNC_PATH)$(NAME_ADDED_FUNC)
-	ranlib $(NAME)
-	@echo libft.a successfully made !!!
+NAME = libft.a
+	
+.c.o:
+	$(CC) $(CFLAGS) -c $< -o ${<:.c=.o}
 
-all: 
+$(NAME):	$(OBJS)
+	ar -rcs $(NAME) $(OBJS)
+
+all:	
 	$(NAME)
 
 clean:
-	$(MAKE) -C $(GNL_PATH) clean
-	$(MAKE) -C $(FT_PRINTF_PATH) clean
-	$(MAKE) -C $(ADDED_FUNC_PATH) clean
-	$(MAKE) -C $(VANILLA_PATH) clean
+	$(RM) $(OBJS) $(BONUS_OBJS)
 
-fclean:	clean
-	$(MAKE) -C $(GNL_PATH) fclean
-	$(MAKE) -C $(FT_PRINTF_PATH) fclean
-	$(MAKE) -C $(ADDED_FUNC_PATH) fclean
-	$(MAKE) -C $(VANILLA_PATH) fclean
+fclean: clean
 	$(RM) $(NAME)
-	
+
 re:		fclean $(NAME)
 
-lib:	$(NAME) clean
+bonus:	$(BONUS_OBJS)
+	ar -rcs $(NAME) $(BONUS_OBJS)
 
-.PHONY: all clean fclean re lib
+.PHONY: all clean fclean re bonus
