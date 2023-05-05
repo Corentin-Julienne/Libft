@@ -20,16 +20,32 @@ More information can be found below and in the subject PDF.
 [`ft_isprint`](./ft_isprint.c) : test for printable character <br>
 [`ft_isupper`](./ft_isupper.c) : test for uppercase character <br>
 [`ft_tolower`](./ft_tolower.c) : returns a lowercase version of an uppercase character <br>
-[`ft_toupper`](./ft_toupper.c) : returns an uppercase version of a lowervase character <br>
+[`ft_toupper`](./ft_toupper.c) : returns an uppercase version of a lowercase character <br>
 
 ### Functions from `<stdlib.h>` library
 
-[`ft_atoi`](./ft_atoi.c) : converts a char* to an int
-[`ft_calloc`](./ft_calloc.c) : allocates contiguous blocks of memory
+[`ft_atoi`](./ft_atoi.c) : converts a char* to an int <br>
+[`ft_calloc`](./ft_calloc.c) : allocates contiguous blocks of memory <br>
 
-### Functions from `<string.h>` library
+### Functions from `<strings.h>` library
+
+
+
+### Functions from `<strings.h>` library
+
+
 
 ### Non-standard functions
+
+[`ft_putchar_fd`](./ft_putchar_fd.c) : writes a char on a given file descriptor <br>
+[`ft_putstr_fd`](./ft_putstr_fd.c) : writes a string on a given file descriptor <br>
+[`ft_putendl_fd`](./ft_putendl_fd.c) : writes a string on a given file descriptor with new line <br>
+[`ft_putnbr_fd`](./ft_putnbr_fd.c) : write a number on a given file descriptor <br>
+[`ft_itoa`](./ft_itoa.c) : converts an int to a char* <br>
+[`ft_substr`](./ft_substr.c) : returns a substring <br>
+[`ft_strtrim`](./ft_strtrim.c) : trim an array of characters <br>
+[`ft_strjoin`](./ft_strjoin.c) : join two strings together <br>
+[`ft_split`](./ft_split.c) : converts a char* into a char** based on a given delimiter <br>
 
 ### Linked list functions
 
